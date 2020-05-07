@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/bilalesi.github.io/covid/static/css/main.07effe72.chunk.css",
+    "main.js": "/bilalesi.github.io/covid/static/js/main.83d7720e.chunk.js",
+    "main.js.map": "/bilalesi.github.io/covid/static/js/main.83d7720e.chunk.js.map",
+    "runtime-main.js": "/bilalesi.github.io/covid/static/js/runtime-main.588a6d4e.js",
+    "runtime-main.js.map": "/bilalesi.github.io/covid/static/js/runtime-main.588a6d4e.js.map",
+    "static/css/2.6d199da9.chunk.css": "/bilalesi.github.io/covid/static/css/2.6d199da9.chunk.css",
+    "static/js/2.e71da52f.chunk.js": "/bilalesi.github.io/covid/static/js/2.e71da52f.chunk.js",
+    "static/js/2.e71da52f.chunk.js.map": "/bilalesi.github.io/covid/static/js/2.e71da52f.chunk.js.map",
+    "index.html": "/bilalesi.github.io/covid/index.html",
+    "precache-manifest.f6a81757941caed52a4800b70ce71088.js": "/bilalesi.github.io/covid/precache-manifest.f6a81757941caed52a4800b70ce71088.js",
+    "service-worker.js": "/bilalesi.github.io/covid/service-worker.js",
+    "static/css/2.6d199da9.chunk.css.map": "/bilalesi.github.io/covid/static/css/2.6d199da9.chunk.css.map",
+    "static/css/main.07effe72.chunk.css.map": "/bilalesi.github.io/covid/static/css/main.07effe72.chunk.css.map",
+    "static/js/2.e71da52f.chunk.js.LICENSE.txt": "/bilalesi.github.io/covid/static/js/2.e71da52f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.588a6d4e.js",
+    "static/css/2.6d199da9.chunk.css",
+    "static/js/2.e71da52f.chunk.js",
+    "static/css/main.07effe72.chunk.css",
+    "static/js/main.83d7720e.chunk.js"
+  ]
+}
