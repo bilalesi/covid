@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Card, Tooltip, Collapse, H2, Callout, Switch, HTMLSelect} from '@blueprintjs/core';
 import { Margin10 } from '../GlobalStyle/Margin';
 import { useQuery } from 'react-query';
-import { useTable } from 'react-table'
+// import { useTable } from 'react-table'
 import { baseCountriesStats } from '../../api/endpoints';
 
 const fetchAllCountries = async (key, type, yesterday) => {

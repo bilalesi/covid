@@ -3,7 +3,7 @@ import { useQuery, queryCache } from 'react-query';
 import './Country.css';
 
 
-import { Card, Elevation, H5, Button, Divider, Callout, MenuItem, Classes, Dialog, Tooltip, Spinner, Popover, PopoverInteractionKind, Intent, Tag, Icon } from '@blueprintjs/core';
+import { Card, Elevation, H5, Button, Divider, Callout, MenuItem, Classes, Dialog, Tooltip, Spinner, Popover, PopoverInteractionKind, Intent, Tag, Icon, Switch } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 import { DateRangePicker} from '@blueprintjs/datetime';
 import '@blueprintjs/datetime/lib/css/blueprint-datetime.css'
@@ -50,10 +50,10 @@ const itemPredicate = (query, item, _index, exactMatch) =>{
     }
 }
 
-const fetchCountryStats = async (key, iso2) =>{
+const fetchCountryStats = async (key, iso2, yesterday) =>{
     console.log('onecountry:', oneCountry, "iso2: ", oneCountry + iso2)
     return(
-        (await fetch(oneCountry + iso2 )).json()
+        (await fetch(oneCountry + iso2 + `?yesterday=${yesterday}&strict=true`)).json()
     )
 }
 const fetchHistoryCountry = async (key, iso2, range) => {
@@ -71,6 +71,12 @@ const generateDataSunburst = (data, colors = []) => {
     let coloring = colors[Math.floor(Math.random() * Math.floor(colors.length))]    
     console.log(" +++ data : ",data)
     const datastyled = [
+        // {
+        //     "id": "cases",
+        //     "label" : "cases",
+        //     "color": coloring[0],
+        //     "value": data.cases
+        // },
         {
             "id": "today cases",
             "label" : "today cases",
@@ -344,8 +350,9 @@ function Country() {
     const { countryRightCorner : {country, iso2} } = useGlobalState();
     const [modalOpenState, setModalOpenState] = useState(false)
     const [chartType, setChartTypeToLine] = useState(true);
+    const [yesterday, setYesterday] = useState(false)
     const dispatch = useGlobalDispatch();    
-    const { status, data, error } = useQuery(['countryStats', iso2], fetchCountryStats)
+    const { status, data, error } = useQuery(['countryStats', iso2, yesterday], fetchCountryStats)
     const handleChangeCountryClick = (item) => {
         dispatch(changeCountryRightCorner({country: item.Country, iso2: item.ISO2}))
     }
@@ -366,6 +373,9 @@ function Country() {
     const handleChangeChart = () => {
         setChartTypeToLine(!chartType)
     }
+    const handleChangeYesterday = () => {
+        setYesterday(!yesterday);
+    }
     const handleDateChange = (range) => {
 
     }
@@ -381,7 +391,10 @@ function Country() {
                     <br/>
                     <strong>Last Updated</strong> : { status === 'success' && new Date(data.updated).toLocaleString()}
                 </p>
-                <Button className='graph' icon="doughnut-chart" onClick={handleOpenModal}>Genrate Graph</Button>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent:'space-evenly'}}>                    
+                    <Button className='graph' icon="doughnut-chart" onClick={handleOpenModal}>Genrate Graph</Button>
+                    <Switch labelElement={<strong>Yesterday</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
+                </div>
                 <Dialog 
                     className='country-graph' 
                     icon="doughnut-chart" 
@@ -419,7 +432,7 @@ function Country() {
                             </Tooltip>
                             <Tooltip content='change between pie and line chart'>
                                 <Button onClick={handleChangeChart} intent='primary'>
-                                    Change to {chartType.line === true ? 'pie' : 'line'}
+                                    Change to {chartType === true ? 'pie' : 'line'}
                                 </Button>
                             </Tooltip>
                         </div>
@@ -428,12 +441,15 @@ function Country() {
             </Callout>
             <Margin10/>
             <Card elevation={Elevation.ONE} interactive={true}>
+                <Callout title='Total Cases' intent='none' style={{marginBottom: '10px'}}>                        
+                    <div className='result'>{status !== 'loading' && data.cases}</div>
+                </Callout>
                 <H5>
                     Today Results
-                </H5>
+                </H5>                
                 <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'}>
                     <Callout title='Cases' intent='warning'>                        
-                        <div className='result'>{status !== 'loading' && data.todayCases}</div>                        
+                        <div className='result'>{status !== 'loading' && data.todayCases}</div>
                     </Callout>
                     <Divider/>
                     <Callout title='Deaths' intent='danger'>

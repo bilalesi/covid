@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './style.css'
-import {H2, Collapse, Card, Elevation, Switch, HTMLSelect, Callout, Tooltip} from '@blueprintjs/core';
+import {H2, Collapse, Card, Elevation, Switch, HTMLSelect, Callout, Tooltip, Spinner} from '@blueprintjs/core';
 import { ResponsiveChoropleth } from '@nivo/geo';
 import { useQuery } from 'react-query';
 import { baseCountriesStats } from '../../api/endpoints';
@@ -55,13 +55,15 @@ function Map() {
                 <Margin10/>
                 <Card elevation={Elevation.ONE} interactive={true} className='map-canvas'>
                     {  
-                        status === 'success' &&
+                        status === 'loading' ? 
+                        <Spinner intent='success' size={Spinner.SIZE_LARGE}/>
+                        :
                         <ResponsiveChoropleth
                             data={transformData(status, data, type)}
                             features={features}
                             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
                             colors="nivo"
-                            domain={[ 0, 2000 ]}
+                            domain={[ 0, 8000 ]}
                             unknownColor="#666666"
                             label="properties.name"
                             valueFormat=".2s"

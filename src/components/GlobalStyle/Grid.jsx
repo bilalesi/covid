@@ -15,7 +15,7 @@ export const StickyGridColumn = styled(GridColumn)`
     position: sticky;
 `
 export const SpacedColumn= styled(GridColumn)`
-    padding: 0 15px;
+    padding: 0 15px 0px 0;
     &:not(:last-child){
         margin-right: 15px;
     }

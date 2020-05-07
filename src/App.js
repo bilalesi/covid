@@ -12,9 +12,9 @@ function App() {
 			<LayoutColumn>
 				<Header/>
 				<Grid>
-					<SpacedColumn>
+					{/* <SpacedColumn>
 						<Menu></Menu>
-					</SpacedColumn>
+					</SpacedColumn> */}
 					<SpacedColumn>
 						<Global/>
 						<Divider/>
