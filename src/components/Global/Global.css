@@ -1,0 +1,35 @@
+.title{
+    display: block;
+}
+.content{
+    display: flex;
+}
+.global{    
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.card{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    /* height: 100px; */
+}
+.stats{
+    font-size: 16px;
+    font-weight: 800;
+}
+.cases{
+    background-color: #F21B42;
+    color: #fff !important;
+}
+.deaths{
+ background-color: #F2B705;
+ color: #fff
+}
+.recovered{
+ background-color: #2ABFA4;
+ color: #fff;
+}

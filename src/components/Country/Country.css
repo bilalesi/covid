@@ -1,0 +1,40 @@
+.card-spaced{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bp3-portal .bp3-menu{
+    max-height: 300px;
+    overflow: auto;
+}
+.bp3-portal .bp3-menu-item-label{
+    display: none;
+}
+.callout{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.result{
+    font-size: 16px;
+    font-weight: 800;
+}
+.graph{
+    background-color: #FBC124 !important;
+}
+.chart-line{
+    height: 600px !important;
+}
+.date-picker:focus{
+    outline: none !important;
+}
+.range-date-resume{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 15px 0;
+}
+.bp3-dialog{
+    width: 700px !important;
+}

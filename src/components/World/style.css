@@ -1,0 +1,14 @@
+.map-canvas{
+    height: 450px;
+}
+.options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bp3-html-select + .bp3-switch{
+    margin-left: 25px;
+}
+.bp3-switch{
+    margin-bottom: 0 !important;
+}

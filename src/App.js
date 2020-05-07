@@ -1,8 +1,10 @@
 import React from 'react';
+import { Divider } from '@blueprintjs/core'
 import './App.css'
 import { Grid, SpacedColumn, StickyGridColumn } from './components/GlobalStyle/Grid';
 import { LayoutColumn } from './components/GlobalStyle/Layout';
-import { Header, Country } from './components';
+import { Header, Country, World, Menu, Global } from './components';
+
 
 function App() {
 	return (
@@ -11,10 +13,12 @@ function App() {
 				<Header/>
 				<Grid>
 					<SpacedColumn>
-						
+						<Menu></Menu>
 					</SpacedColumn>
 					<SpacedColumn>
-						ninknlkandlknalsdn
+						<Global/>
+						<Divider/>
+						<World/>
 					</SpacedColumn>
 
 					<StickyGridColumn className='last-column'>

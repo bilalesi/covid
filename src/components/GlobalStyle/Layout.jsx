@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-    max-width: 950px;
-    margin: 0 auto;
+    max-width: 1250px;
+    margin: 50px auto 0;
 `
 
 export const LayoutColumn = styled(Layout)`
