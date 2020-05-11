@@ -1,7 +1,8 @@
-import React, { useState, useCallback, useMemo } from 'react'
-import { Card, Tooltip, Collapse, H2, Callout, Switch, HTMLSelect, Spinner, Tag, Intent} from '@blueprintjs/core';
+import React, { useState, useCallback, useMemo, useRef } from 'react'
+import { Card, Tooltip, Collapse, H2, Callout, Switch, HTMLSelect, Spinner, Tag, Intent, Button} from '@blueprintjs/core';
 import { Margin10 } from '../GlobalStyle/Margin';
 import { useQuery } from 'react-query';
+import ReactToPrint from 'react-to-print';
 import { baseCountriesStats } from '../../api/endpoints';
 import TableFloaded from './TableLux';
 
@@ -166,7 +167,7 @@ function Table() {
     const rowsData = useMemo(
         () => status === 'success' ? transformFetchedData(data) : [],
         [status, data]
-    )    
+    )
     return (
         <div>
             {console.log('table rows : ', rowsData)}
@@ -179,9 +180,10 @@ function Table() {
                     <HTMLSelect options={options} onChange={handleTypeChange} />
                     <Switch labelElement={<strong>Yesterday</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
                     <Switch labelElement={<strong>Display All</strong>} inline={true} large={true} checked={displayAll} onChange={handleChangeDisplayAll}/>
+                    
                 </Callout>
                 <Margin10/>
-                <Card interactive={true}>
+                <Card interactive={true}>                    
                     {
                         status === 'loading' ? 
                             <Spinner size={Spinner.SIZE_LARGE}/>

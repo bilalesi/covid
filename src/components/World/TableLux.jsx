@@ -1,8 +1,9 @@
-import React from 'react'
-import { useTable, usePagination } from 'react-table';
+import React, { useRef } from 'react'
+import { useTable, usePagination, useSortBy } from 'react-table';
+import ReactToPrint from 'react-to-print';
 import { Callout, Button, Intent } from '@blueprintjs/core';
 import { Margin10 } from '../GlobalStyle/Margin';
-import { useSortBy } from 'react-table/dist/react-table.development';
+
 
 function TableLux({columns, data, seeAll}) {
     const pageSizing = seeAll === true ? data.length : 25;
@@ -10,10 +11,16 @@ function TableLux({columns, data, seeAll}) {
         page, pageCount, pageOptions, canPreviousPage, canNextPage, gotoPage, previousPage, nextPage,
         setPageSize, state: { pageIndex, pageSize }
         } = useTable({columns, data, initialState: { pageIndex:0, pageSize: pageSizing, hiddenColumns: ['map', 'continent', 'iso2']}, manualPageiniation: true},
-         useSortBy, usePagination);
+        useSortBy, usePagination);
+
+    const copRef = useRef();
     return (
         <div>
-            <table {...getTableProps()}>
+            <ReactToPrint
+                    trigger={() => <Button intent={Intent.PRIMARY}>Print</Button>}
+                    content={() => copRef.current}
+                />
+            <table {...getTableProps()} ref={copRef}>
                 <thead>
                     {
                         headerGroups.map(headerGroup => (
