@@ -163,7 +163,6 @@ function Table() {
         }
     ], []);
     const { status, data } = useQuery(['allCountriesData', typeSort, yesterday], fetchAllCountries);
-    const [countPages, setCountPages] = useState(status === 'loading' ? 0 : Math.ceil(data.length/20))
     const rowsData = useMemo(
         () => status === 'success' ? transformFetchedData(data) : [],
         [status, data]

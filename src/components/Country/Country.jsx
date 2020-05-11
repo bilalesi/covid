@@ -199,12 +199,9 @@ const GenerateDataLine = ({ dataIn }) => {
     const [styledData, setStyledData] = useState([])
     useEffect(() => {
         if(status === 'success'){
-            console.log('qfqsddqs+++', Object.keys(data.timeline['cases']).map(k => ({
-                        "x" : k,
-                        "y" : data.timeline['cases'][k]
-                    })) )
+            
             setStyledData([{
-                "id" : `${data.country}_cases`,
+                "id" : `cases`,
                 "color" : "hsl(213, 70%, 50%)",
                 "data": 
                     Object.keys(data.timeline['cases']).map(k => ({
@@ -214,7 +211,7 @@ const GenerateDataLine = ({ dataIn }) => {
                 
             },
             {
-                "id" : `${data.country}_deaths`,
+                "id" : `deaths`,
                 "color" : "hsl(278, 70%, 50%)",
                 "data": 
                     Object.keys(data.timeline['deaths']).map(k => ({
@@ -224,7 +221,7 @@ const GenerateDataLine = ({ dataIn }) => {
                 
             },
             {
-                "id" : `${data.country}_recovered`,
+                "id" : `recovered`,
                 "color" : "hsl(229, 70%, 50%)",
                 "data": 
                     Object.keys(data.timeline['recovered']).map(k => ({
@@ -315,11 +312,11 @@ const GenerateDataLine = ({ dataIn }) => {
                     useMesh={true}
                     legends={[
                         {
-                            anchor: 'top',
-                            direction: 'row',
+                            anchor: 'right',
+                            direction: 'column',
                             justify: false,
-                            translateX: 100,
-                            translateY: -400,
+                            translateX: 90,
+                            translateY: 30,
                             itemsSpacing: 0,
                             itemDirection: 'left-to-right',
                             itemWidth: 80,
