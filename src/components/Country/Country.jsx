@@ -511,6 +511,9 @@ function Country() {
                     onItemSelect={handleChangeCountryClick}
                     noResults={<MenuItem disabled={true} text='No Results'/>}
                     resetOnQuery={true}
+                    popoverProps={{
+                        position: "top"
+                    }}
                     // initialContent={allCountries ? <MenuItem disabled={true} text={`${allCountries.length} country loaded`}/> : undefined}
                 >
                     <Button text={country ? country : 'select Country'} intent='primary' rightIcon='path-search'/>

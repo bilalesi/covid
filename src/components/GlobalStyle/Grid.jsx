@@ -13,6 +13,7 @@ export const GridColumn = styled.div`
 
 export const StickyGridColumn = styled(GridColumn)`
     position: sticky;
+    top: 25px;
 `
 export const SpacedColumn= styled(GridColumn)`
     padding: 0 15px 0px 0;

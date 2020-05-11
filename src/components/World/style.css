@@ -15,3 +15,62 @@
 .bp3-switch{
     margin-bottom: 0 !important;
 }
+
+.button-lux{
+    background-clip: padding-box !important;
+    box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px, rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    background-color: #fff !important;
+}
+.button-lux:hover{
+    box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px, rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    transform: scale(1.04) !important;
+    border-color: rgba(0, 0, 0, 0.08)
+}
+.button-lux +.button-lux{
+    margin-left: 20px;
+}
+.controls-btns{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.result-res{
+    margin-left: 25px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+}
+.st-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+table {
+    border-spacing: 0;
+    border: 1px solid black;
+    width: 100%
+}
+tr:last-child td {
+    border-bottom: 0;
+
+}
+th, td {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+td{
+    text-align: center;
+}
+th:last-child, td:last-child{
+    border-right: 0;
+}
+
+.yellow-intent{
+    background-color: rgb(188, 218, 18);
+    color: #fff;
+}
