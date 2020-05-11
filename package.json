@@ -2,7 +2,6 @@
   "name": "coro-app-f",
   "version": "0.1.0",
   "private": true,
-  "homepage": "bilalesi.github.io/covid",
   "dependencies": {
     "@blueprintjs/core": "^3.26.1",
     "@blueprintjs/datetime": "^3.17.0",

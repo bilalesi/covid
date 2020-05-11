@@ -3,6 +3,9 @@ import { Card, Tooltip, Collapse, H2, Callout, Switch, HTMLSelect} from '@bluepr
 import { Margin10 } from '../GlobalStyle/Margin';
 import { useQuery } from 'react-query';
 import { baseCountriesStats } from '../../api/endpoints';
+
+
+
 const fetchAllCountries = async (key, type, yesterday) => {
     return (await fetch(baseCountriesStats + ``)).json()
 }
