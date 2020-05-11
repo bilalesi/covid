@@ -4,7 +4,8 @@ import { Margin10 } from '../GlobalStyle/Margin';
 import { useQuery } from 'react-query';
 import { baseCountriesStats } from '../../api/endpoints';
 import TableFloaded from './TableLux';
-import { TAG } from '@blueprintjs/core/lib/esm/common/classes';
+
+
 const fetchAllCountries = async (key, typeSort, yesterday) => {
     return (await fetch(baseCountriesStats + `?yesterday=${yesterday}&sort=${typeSort}`)).json()
 }
@@ -42,7 +43,8 @@ const Flag = ({value}) => {
     return <img src={value} alt='' style={{
         width:'25px',
         height:'18px',
-        borderRadius:'8px'
+        borderRadius:'8px',
+        boxShadow: 'transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px, rgba(0, 0, 0, 0.12) 0px 6px 16px'
     }}/>
 }
 const Danger = ({value}) => {
@@ -72,9 +74,9 @@ function Table() {
     const handleChangeDisplayAll = () => {
         setDiplayAll(!displayAll)
     }
-    const [type, setType] = useState('all')
+    const [typeSort, setTypeSort] = useState('all')
     const handleTypeChange = (e) => {
-        setType(e.currentTarget.value);
+        setTypeSort(e.currentTarget.value);
     }
     const hiddenColumns = ['continent', '_id', 'iso2', "iso3", 'lat', 'long']
     const columns = useMemo(() => [
@@ -160,7 +162,7 @@ function Table() {
             ]
         }
     ], []);
-    const { status, data } = useQuery(['allCountriesData', type, yesterday], fetchAllCountries);
+    const { status, data } = useQuery(['allCountriesData', typeSort, yesterday], fetchAllCountries);
     const [countPages, setCountPages] = useState(status === 'loading' ? 0 : Math.ceil(data.length/20))
     const rowsData = useMemo(
         () => status === 'success' ? transformFetchedData(data) : [],
