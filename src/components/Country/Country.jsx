@@ -8,7 +8,6 @@ import { Select } from '@blueprintjs/select';
 import { DateRangePicker} from '@blueprintjs/datetime';
 import '@blueprintjs/datetime/lib/css/blueprint-datetime.css'
 import moment from 'moment';
-import _ from 'underscore';
 import { Margin10 } from  '../GlobalStyle/Margin';
 import { countries } from '../../api/country';
 import { oneCountry, historicalCountry } from '../../api/endpoints';
@@ -285,16 +284,16 @@ const GenerateDataLine = ({ dataIn }) => {
                     yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
                     axisTop={null}
                     axisRight={null}
-                    enableGridY={true}
+                    enableGridY={true}                    
                     // enablePointLabel={true}
                     enableGridX={true}
                     axisBottom={{
                         orient: 'bottom',
-                        tickSize: 5,
-                        tickPadding: 5,
-                        tickRotation: 0,
+                        tickSize: 2,
+                        tickPadding: 10,
+                        tickRotation: -70,
                         legend: 'dates',
-                        legendOffset: 36,
+                        legendOffset: 50,
                         legendPosition: 'middle'
                     }}
                     axisLeft={{
@@ -303,10 +302,10 @@ const GenerateDataLine = ({ dataIn }) => {
                         tickPadding: 5,
                         tickRotation: 0,
                         legend: 'count',
-                        legendOffset: -40,
+                        legendOffset: -45,
                         legendPosition: 'middle'
                     }}
-                    colors={{ scheme: 'nivo' }}
+                    colors={{ scheme: 'set1' }}
                     pointSize={2}
                     pointColor={{ theme: 'background' }}
                     pointBorderWidth={2}
