@@ -11,7 +11,7 @@ const  Global = () => {
     const { status, data, error } = useQuery(['worldStats'], fetchWorldStats);
     return (
         <div className='global'>
-            <H3 className='title'>Global Statistics</H3>
+            <H3 className='title'>الإحصائيات في العالم </H3>
             <div className='content'>
                 <Card className='card cases'>
                     {

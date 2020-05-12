@@ -1,8 +1,16 @@
+@font-face {
+font-family: 'AirbnbCerealAppBold';
+font-style: normal;
+font-weight: normal;
+src: local('Airbnb Cereal App Bold'), url('./assests/airbnb-cereal/AirbnbCerealBold.woff') format('woff');
+}
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'AirbnbCerealAppBold', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

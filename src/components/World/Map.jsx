@@ -49,13 +49,13 @@ function Map() {
     return (
         <div>
             <Tooltip content='click to collapse'>
-                <H2 onClick={handleShowMap}>World Map</H2>  
+                <H2 onClick={handleShowMap}>خريطة العالم</H2>  
             </Tooltip>
             <Margin10/>
             <Collapse isOpen={showMap}>
                 <Callout className='options' intent='none'>
                     <HTMLSelect options={options} onChange={handleTypeChange} />
-                    <Switch labelElement={<strong>البارحة</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
+                    <Switch labelElement={<strong>الأمس</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
                 </Callout>
                 <Margin10/>
                 <Card elevation={Elevation.ONE} interactive={true} className='map-canvas'>
