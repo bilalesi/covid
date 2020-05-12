@@ -78,3 +78,6 @@ th:last-child, td:last-child{
 .print-area{
     margin: 15px;
 }
+.print-page{
+    margin-top: 5px;
+}

@@ -42,6 +42,7 @@ function TableLux({columns, data, refParent}) {
             <ReactToPrint
                 trigger={() => <Button intent={Intent.PRIMARY}>Print</Button>}
                 content={() => copRef.current}
+                pageStyle='print-page'
                 bodyClass='print-area'
             />
             <Margin10/>
