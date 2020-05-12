@@ -36,10 +36,7 @@ function TableLux({columns, data, refParent}) {
     }, [stateContext.displayAllInTable, data])
     const copRef = useRef();
     return (
-        <div className='bp3-rtl'>
-            {
-                console.log('state 89++9 :', stateContext)
-            }
+        <div className='bp3-rtl'>        
             <ReactToPrint
                 trigger={() => <Button icon='print' intent={Intent.SUCCESS} className='bp3-rtl'>طباعة</Button>}
                 content={() => copRef.current}

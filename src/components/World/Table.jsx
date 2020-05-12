@@ -189,7 +189,6 @@ const Table = () => {
     const stateContext = useGlobalState();
     return (
         <div className='bp3-rtl'>
-            {console.log('table rows : ', rowsData)}
             <Tooltip content='click to collapse' className='bp3-rtl'>
                 <H2 onClick={handleShowTable}>جدول الإحصاءات للعالم</H2>  
             </Tooltip>

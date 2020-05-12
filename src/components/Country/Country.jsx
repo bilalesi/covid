@@ -36,10 +36,7 @@ const itemPredicate = (query, item, _index, exactMatch) =>{
     const normalizeSlug = item.Slug.toLowerCase();
     const normalizeISO2 = item.ISO2.toLowerCase();
     const normalizeQuery = query.toLowerCase();
-    // console.log('normalizeQuery: ', normalizeQuery, 
-    //         'normalizeCountry:', normalizeCountry, 
-    //         'exactmatch: ', exactMatch)
-    
+
     if(exactMatch){
         return normalizeCountry === normalizeQuery
     }
@@ -50,8 +47,7 @@ const itemPredicate = (query, item, _index, exactMatch) =>{
     }
 }
 
-const fetchCountryStats = async (key, iso2, yesterday) =>{
-    console.log('onecountry:', oneCountry, "iso2: ", oneCountry + iso2)
+const fetchCountryStats = async (key, iso2, yesterday) =>{  
     return(
         (await fetch(oneCountry + iso2 + `?yesterday=${yesterday}&strict=true`)).json()
     )
@@ -69,7 +65,6 @@ const colors = [
 ]
 const generateDataSunburst = (data, colors = []) => {
     let coloring = colors[Math.floor(Math.random() * Math.floor(colors.length))]    
-    console.log(" +++ data : ",data)
     const datastyled = [
         // {
         //     "id": "cases",
@@ -108,7 +103,6 @@ const generateDataSunburst = (data, colors = []) => {
             "value": data.critical,             
         }
     ]
-    console.log(' ++++ styled data: ', datastyled)
     return (
         <ResponsivePieCanvas
             data={datastyled}
@@ -271,7 +265,6 @@ const GenerateDataLine = ({ dataIn }) => {
                 <Icon icon='arrow-right'/>
                 <MomemtDate date={rangeDates[1]}/>
             </div>
-            { console.log('styled data :', styledData)}
             {                
                 status === 'success' && <ResponsiveLine
                     data={styledData}
