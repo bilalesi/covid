@@ -8,6 +8,7 @@ import { Select } from '@blueprintjs/select';
 import { DateRangePicker} from '@blueprintjs/datetime';
 import '@blueprintjs/datetime/lib/css/blueprint-datetime.css'
 import moment from 'moment';
+import 'moment/locale/ar-dz';
 import { Margin10 } from  '../GlobalStyle/Margin';
 import { countries } from '../../api/country';
 import { oneCountry, historicalCountry } from '../../api/endpoints';
@@ -201,7 +202,7 @@ const GenerateDataLine = ({ dataIn }) => {
         if(status === 'success'){
             
             setStyledData([{
-                "id" : `cases`,
+                "id" : `الحالات`,
                 "color" : "hsl(213, 70%, 50%)",
                 "data": 
                     Object.keys(data.timeline['cases']).map(k => ({
@@ -211,7 +212,7 @@ const GenerateDataLine = ({ dataIn }) => {
                 
             },
             {
-                "id" : `deaths`,
+                "id" : `الوفيات`,
                 "color" : "hsl(278, 70%, 50%)",
                 "data": 
                     Object.keys(data.timeline['deaths']).map(k => ({
@@ -221,7 +222,7 @@ const GenerateDataLine = ({ dataIn }) => {
                 
             },
             {
-                "id" : `recovered`,
+                "id" : `الإستشفاء`,
                 "color" : "hsl(229, 70%, 50%)",
                 "data": 
                     Object.keys(data.timeline['recovered']).map(k => ({
@@ -372,24 +373,21 @@ function Country() {
     const handleChangeYesterday = () => {
         setYesterday(!yesterday);
     }
-    const handleDateChange = (range) => {
-
-    }
+ 
     return (
-        <div>
-            {
-                console.log("state", data, "status: ", status)
-            }
-            <Callout title={`Stats for ${country}`} icon={'flag'} intent='Primary'>
+        <div>          
+            <Callout title={`إحصاءات  ${country}`} icon={'flag'} intent='Primary'>
                 <p>
-                    Updated covid-19 statistics for your precised Country
-                    It will updated each 10 minute 
+                    {/* Updated covid-19 statistics for your precised Country
+                    It will updated each 10 minute  */}
+                    إحصاءات الفيروس المستجد كوفيد-19 لبلد معين
+                    يتم التحديث أوتوماتيكيا كل عشر  '10' دقائق
                     <br/>
-                    <strong>Last Updated</strong> : { status === 'success' && new Date(data.updated).toLocaleString()}
+                    {/* <strong>التحديث الأخير</strong> : { status === 'success' && moment(new Date(data.updated).toLocaleString())} */}
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent:'space-evenly'}}>                    
-                    <Button className='graph' icon="doughnut-chart" onClick={handleOpenModal}>Genrate Graph</Button>
-                    <Switch labelElement={<strong>Yesterday</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
+                    <Button className='graph' icon="doughnut-chart" onClick={handleOpenModal}>إنشاء الرسوم البيانية</Button>
+                    <Switch labelElement={<strong>إحصاءات الأمس</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
                 </div>
                 <Dialog 
                     className='country-graph' 
@@ -425,7 +423,7 @@ function Country() {
                             </Tooltip>
                             <Tooltip content='change between pie and line chart'>
                                 <Button onClick={handleChangeChart} intent='primary'>
-                                    Change to {chartType === true ? 'pie' : 'line'}
+                                    تغيير إلى {chartType === true ? 'بيان دائري' : 'منحنى خطي'}
                                 </Button>
                             </Tooltip>
                         </div>
