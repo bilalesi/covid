@@ -434,8 +434,8 @@ function Country() {
             </Callout>
             <Margin10/>
             <Card elevation={Elevation.ONE} interactive={true}>
-                <Callout title='Total Cases' intent='none' style={{marginBottom: '10px'}} className='--second'>                        
-                    <div className='الحالات الإجمالية'>{status !== 'loading' && data.cases}</div>
+                <Callout title='الحالات الإجمالية' intent='none' style={{marginBottom: '10px'}} className='--second'>                        
+                    <div className='result'>{status !== 'loading' && data.cases}</div>
                 </Callout>
                 <H5>
                     Today Results
