@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './style.css'
-import {H2, Collapse, Card, Elevation, Switch, HTMLSelect, Callout, Tooltip, Spinner} from '@blueprintjs/core';
+import {H2, Collapse, Card, Elevation, Switch, HTMLSelect, Callout, Tooltip, Spinner, Intent} from '@blueprintjs/core';
 import { ResponsiveChoropleth } from '@nivo/geo';
 import { useQuery } from 'react-query';
 import { baseCountriesStats } from '../../api/endpoints';
@@ -44,21 +44,21 @@ function Map() {
     const handleChangeYesterday = () => {
         setYesterday(!yesterday);
     }
-    const {status, data, error} = useQuery(['allCountriesByType', type, yesterday], fetchAllCountriesByType);
+    const {status, data} = useQuery(['allCountriesByType', type, yesterday], fetchAllCountriesByType);
     
     return (
-        <div>
-            <Tooltip content='click to collapse'>
-                <H2 onClick={handleShowMap}>خريطة العالم</H2>  
+        <div className='bp3-rtl'>
+            <Tooltip content='click to collapse' className='bg-white' intent={Intent.PRIMARY}>
+                <H2 onClick={handleShowMap} className='bp3-rtl'>خريطة العالم</H2>  
             </Tooltip>
             <Margin10/>
-            <Collapse isOpen={showMap}>
-                <Callout className='options' intent='none'>
-                    <HTMLSelect options={options} onChange={handleTypeChange} />
-                    <Switch labelElement={<strong>الأمس</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
+            <Collapse isOpen={showMap} className='bp3-rtl'>
+                <Callout className='options bp3-rtl' intent='none'>
+                    <HTMLSelect className='bp3-rtl' options={options} onChange={handleTypeChange} />
+                    <Switch className='bp3-rtl' labelElement={<strong>الأمس</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
                 </Callout>
                 <Margin10/>
-                <Card elevation={Elevation.ONE} interactive={true} className='map-canvas'>
+                <Card elevation={Elevation.ONE} interactive={true} className='map-canvas bp3-rtl'>
                     {  
                         status === 'loading' ? 
                         <Spinner intent='success' size={Spinner.SIZE_LARGE}/>

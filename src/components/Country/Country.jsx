@@ -18,7 +18,7 @@ import { ResponsivePieCanvas } from '@nivo/pie';
 import { ResponsiveLine } from '@nivo/line';
 
 
-const itemRenderer = (item, {handleClick, modifiers, query}) => {
+const itemRenderer = (item, {handleClick, modifiers}) => {
     return(
         <MenuItem 
             key={item.ISO2}
@@ -190,7 +190,7 @@ const GenerateDataLine = ({ dataIn }) => {
     const [openDatePicker, setOpenDatePicker] = useState(false);
     const [rangeDates, setRangeDates] = useState([minDate, maxDate])
     let range = moment(rangeDates[1]).diff(moment(rangeDates[0]), 'days');
-    const {status, data, error } = useQuery(['historyCountry', dataIn.countryInfo['iso2'], range], fetchHistoryCountry)
+    const {status, data } = useQuery(['historyCountry', dataIn.countryInfo['iso2'], range], fetchHistoryCountry)
     const handleDateRangeChange = (selectedDates) => {
         if(selectedDates[0] !== null && selectedDates[1] !== null){
             setRangeDates(selectedDates);
@@ -232,7 +232,7 @@ const GenerateDataLine = ({ dataIn }) => {
                 
             }])
         }        
-    }, [data])   
+    }, [data, status])   
     return(
         <>
             <Popover 
@@ -349,7 +349,7 @@ function Country() {
     const [chartType, setChartTypeToLine] = useState(true);
     const [yesterday, setYesterday] = useState(false)
     const dispatch = useGlobalDispatch();    
-    const { status, data, error } = useQuery(['countryStats', iso2, yesterday], fetchCountryStats)
+    const { status, data } = useQuery(['countryStats', iso2, yesterday], fetchCountryStats)
     const handleChangeCountryClick = (item) => {
         dispatch(changeCountryRightCorner({country: item.Country, iso2: item.ISO2}))
     }
@@ -376,8 +376,8 @@ function Country() {
  
     return (
         <div>          
-            <Callout title={`إحصاءات  ${country}`} icon={'flag'} intent='Primary'>
-                <p>
+            <Callout title={`إحصاءات  ${country}`} icon={'flag'} intent='Primary' className='bp3-rtl'>
+                <p className='bp3-rtl'>
                     {/* Updated covid-19 statistics for your precised Country
                     It will updated each 10 minute  */}
                     إحصاءات الفيروس المستجد كوفيد-19 لبلد معين
@@ -385,12 +385,12 @@ function Country() {
                     <br/>
                     {/* <strong>التحديث الأخير</strong> : { status === 'success' && moment(new Date(data.updated).toLocaleString())} */}
                 </p>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent:'space-evenly'}}>                    
-                    <Button className='graph' icon="doughnut-chart" onClick={handleOpenModal}>إنشاء الرسوم البيانية</Button>
-                    <Switch labelElement={<strong>إحصاءات الأمس</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent:'space-evenly'}} className='bp3-rtl'>                    
+                    <Button className='graph bp3-rtl' icon="doughnut-chart" onClick={handleOpenModal}>الرسوم البيانية</Button>
+                    <Switch className='bp3-rtl' labelElement={<strong>الأمس</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
                 </div>
                 <Dialog 
-                    className='country-graph' 
+                    className='country-graph bp3-rtl' 
                     icon="doughnut-chart" 
                     onClose={handleCloseModal} 
                     title={`${country} chart`}
@@ -403,12 +403,12 @@ function Country() {
                 >   
                     <div className={Classes.DIALOG_BODY}>                        
                         <p>
-                            <strong>
-                                Data integration is the seminal problem of the digital age. For over ten years, we’ve
-                                helped the world’s premier organizations rise to the challenge.
+                            <strong className='bp3-rtl'>
+                                الرسوم البيانية لها دور جد فعال في تقديم صورة واضحة عن تطور هذا الفيروس 
+                                يتم تقديم في هذه النافذة رسوم حطية و رسوم دائرية عن توزيع النسب و كذا التطور اليومي للفيروس
                             </strong>
                         </p>
-                        <div className='chart-line'>
+                        <div className='chart-line bp3-rtl'>
                             {
                                 chartType === false ?
                                     (status === 'loading' ? <Spinner size={Spinner.SIZE_LARGE}/> : generateDataSunburst(data, colors))
@@ -419,7 +419,7 @@ function Country() {
                     <div className={Classes.DIALOG_FOOTER}>
                         <div className={Classes.DIALOG_FOOTER_ACTIONS}>
                             <Tooltip content='close chart dialog'>
-                                <Button onClick={handleCloseModal}> Close </Button>
+                                <Button onClick={handleCloseModal}> إغلاق </Button>
                             </Tooltip>
                             <Tooltip content='change between pie and line chart'>
                                 <Button onClick={handleChangeChart} intent='primary'>
@@ -432,64 +432,64 @@ function Country() {
             </Callout>
             <Margin10/>
             <Card elevation={Elevation.ONE} interactive={true}>
-                <Callout title='الحالات الإجمالية' intent='none' style={{marginBottom: '10px'}} className='--second'>                        
+                <Callout title='الحالات الإجمالية' intent='none' style={{marginBottom: '10px'}} className='--second bp3-rtl'>                        
                     <div className='result'>{status !== 'loading' && data.cases}</div>
                 </Callout>
-                <H5>
-                    Today Results
+                <H5 className='bp3-rtl'>
+                    الحالات الأنية
                 </H5>                
-                <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'}>
-                    <Callout title='الحالات الآنية' intent='warning' className='--second'>      
-                        <div className='result'>{status !== 'loading' && data.todayCases}</div>
+                <div className={status === 'loading' ? 'bp3-skeleton bp3-rtl' : 'callout bp3-rtl'}>
+                    <Callout title='الحالات الآنية' intent='warning' className='--second bp3-rtl'>      
+                        <div className='result bp3-rtl'>{status !== 'loading' && data.todayCases}</div>
                     </Callout>
                     <Divider/>
-                    <Callout title='الوفيات الآنية' intent='danger' className='--second'>
-                        <div className='result'>{status !== 'loading' && data.todayDeaths}</div> 
+                    <Callout title='الوفيات الآنية' intent='danger' className='--second bp3-rtl'>
+                        <div className='result bp3-rtl'>{status !== 'loading' && data.todayDeaths}</div> 
                     </Callout>
                 </div>              
             </Card>
             <Divider/>
             <Card elevation={Elevation.ONE} interactive={true}>
-                <H5>
-                    Recovered
+                <H5 className='bp3-rtl'>
+                    حالات الإستشفاء
                 </H5>
-                <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'}>
-                    <Callout title='حالات الإستشفاء' intent='success' className='--second'>
-                        <div className='result'>{status !== 'loading' && data.recovered}</div>                        
+                <div className={status === 'loading' ? 'bp3-skeleton bp3-rtl' : 'callout bp3-rtl'}>
+                    <Callout title='حالات الإستشفاء' intent='success' className='--second bp3-rtl'>
+                        <div className='result bp3-rtl'>{status !== 'loading' && data.recovered}</div>                        
                     </Callout>
                     <Divider/>
-                    <Callout title='الإختبارات' icon='diagnosis' intent='none' className='--second'>
-                        <div className='result'>{status !== 'loading' && data.tests}</div> 
+                    <Callout title='الإختبارات' icon='diagnosis' intent='none' className='--second bp3-rtl'>
+                        <div className='result bp3-rtl'>{status !== 'loading' && data.tests}</div> 
                     </Callout>
                 </div>                
             </Card>
             <Divider/>
-            <Card elevation={Elevation.ONE} interactive={true}>
-                <H5>
-                    Deaths & Criticals
+            <Card elevation={Elevation.ONE} interactive={true} className='bp3-rtl'>
+                <H5 className='bp3-rtl'>
+                    الوفيات & الحالات الحرجة
                 </H5>
-                <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'} className='--second'>
+                <div className={status === 'loading' ? 'bp3-skeleton --second bp3-rtl' : 'callout --second bp3-rtl'}>
                     <Callout title='الوفيات' intent='danger'>                        
-                        <div className='result'>{status !== 'loading' && data.deaths}</div>                        
+                        <div className='result bp3-rtl'>{status !== 'loading' && data.deaths}</div>                        
                     </Callout>
                     <Divider/>
-                    <Callout title='الحالات الحرجة' icon='selection' intent='none' className='--second'>
-                        <div className='result'>{status !== 'loading' && data.critical}</div> 
+                    <Callout title='الحالات الحرجة' icon='selection' intent='none' className='--second bp3-rtl'>
+                        <div className='result bp3-rtl'>{status !== 'loading' && data.critical}</div> 
                     </Callout>
                 </div>                  
             </Card>
             <Divider/>
-            <Card elevation={Elevation.ONE} interactive={true}>
+            <Card elevation={Elevation.ONE} interactive={true} className='bp3-rtl'>
                 <H5>
-                    Other Stats
+                    إحصاءات دلالية
                 </H5>
-                <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'}>
-                    <Callout title='الحالات/المليون' icon='percentage' intent='none' className='--second'>                        
-                        <div className='result'>{status !== 'loading' && data.casesPerOneMillion}</div>                        
+                <div className={status === 'loading' ? 'bp3-skeleton bp3-rtl' : 'callout bp3-rtl'}>
+                    <Callout title='الحالات/المليون' icon='percentage' intent='none' className='--second bp3-rtl'>                        
+                        <div className='result bp3-rtl'>{status !== 'loading' && data.casesPerOneMillion}</div>                        
                     </Callout>
                     <Divider/>
-                    <Callout title='الوفيات/المليون' icon='percentage' intent='none' className='--second'>
-                        <div className='result'>{status !== 'loading' && data.deathsPerOneMillion}</div> 
+                    <Callout title='الوفيات/المليون' icon='percentage' intent='none' className='--second bp3-rtl'>
+                        <div className='result bp3-rtl'>{status !== 'loading' && data.deathsPerOneMillion}</div> 
                     </Callout>
                 </div>                
             </Card>

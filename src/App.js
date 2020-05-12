@@ -3,7 +3,7 @@ import { Divider } from '@blueprintjs/core'
 import './App.css'
 import { Grid, SpacedColumn, StickyGridColumn } from './components/GlobalStyle/Grid';
 import { LayoutColumn } from './components/GlobalStyle/Layout';
-import { Header, Country, World, Menu, Global } from './components';
+import { Header, Country, World, Global } from './components';
 
 
 function App() {

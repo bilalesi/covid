@@ -1,8 +1,7 @@
-import React, { useState, useCallback, useMemo, useRef } from 'react'
-import { Card, Tooltip, Collapse, H2, Callout, Switch, HTMLSelect, Spinner, Tag, Intent, Button} from '@blueprintjs/core';
+import React, { useState, useMemo } from 'react'
+import { Card, Tooltip, Collapse, H2, Callout, Switch, HTMLSelect, Spinner, Tag, Intent} from '@blueprintjs/core';
 import { Margin10 } from '../GlobalStyle/Margin';
 import { useQuery } from 'react-query';
-import ReactToPrint from 'react-to-print';
 import { baseCountriesStats } from '../../api/endpoints';
 import TableFloaded from './TableLux';
 import { useGlobalDispatch, useGlobalState } from '../../contexts/GlobalContext';
@@ -75,7 +74,6 @@ const Table = () => {
     const handleChangeYesterday = () => {
         setYesterday(!yesterday)
     }
-    const [displayAll, setDiplayAll] = useState(false);
     const handleChangeDisplayAll = () => {
         // setDiplayAll(!displayAll)
         dispatch(changeDisplayInTable());
@@ -84,7 +82,7 @@ const Table = () => {
     const handleTypeChange = (e) => {
         setTypeSort(e.currentTarget.value);
     }
-    const hiddenColumns = ['continent', '_id', 'iso2', "iso3", 'lat', 'long']
+    // const hiddenColumns = ['continent', '_id', 'iso2', "iso3", 'lat', 'long']
     const columns = useMemo(() => [
         {
             // Header: 'Country',
@@ -190,18 +188,17 @@ const Table = () => {
     const dispatch = useGlobalDispatch();
     const stateContext = useGlobalState();
     return (
-        <div>
+        <div className='bp3-rtl'>
             {console.log('table rows : ', rowsData)}
-            <Tooltip content='click to collapse'>
+            <Tooltip content='click to collapse' className='bp3-rtl'>
                 <H2 onClick={handleShowTable}>جدول الإحصاءات للعالم</H2>  
             </Tooltip>
             <Margin10/>            
             <Collapse isOpen={showTable}>
-                <Callout intent='none' className='options'>
-                    <HTMLSelect options={options} onChange={handleTypeChange} />
-                    <Switch labelElement={<strong>إحصاءات البارحة</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
-                    <Switch labelElement={<strong>إظهار الكل</strong>} inline={true} large={true} checked={stateContext.displayAllInTable} onChange={handleChangeDisplayAll}/>                    
-                    
+                <Callout intent='none' className='options bp3-rtl'>
+                    <HTMLSelect options={options} onChange={handleTypeChange} disabled={true}/>
+                    <Switch className='bp3-rtl' labelElement={<strong>الأمس</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
+                    <Switch className='bp3-rtl' labelElement={<strong>إظهار الكل</strong>} inline={true} large={true} checked={stateContext.displayAllInTable} onChange={handleChangeDisplayAll}/>                    
                 </Callout>
                 <Margin10/>
                 <Card interactive={true}>                    

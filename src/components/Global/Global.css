@@ -1,5 +1,6 @@
-.title{
+.title-1{
     display: block;
+    align-self: flex-end;
 }
 .content{
     display: flex;
@@ -9,6 +10,8 @@
     flex-flow: column nowrap;
     align-items: flex-start;
     justify-content: space-between;
+    text-align: right;
+    box-sizing: border-box;
 }
 .card{
     display: flex;

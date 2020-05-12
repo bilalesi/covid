@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useTable, usePagination, useSortBy } from 'react-table';
 import ReactToPrint from 'react-to-print';
 import { Callout, Button, Intent } from '@blueprintjs/core';
@@ -14,9 +14,9 @@ import './style.css'
 function TableLux({columns, data, refParent}) {
     const stateContext = useGlobalState();
     const pageSizing =  stateContext.displayAllInTable ?  data.length : 25;
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, 
-        page, pageCount, pageOptions, canPreviousPage, canNextPage, gotoPage, previousPage, nextPage,
-        setPageSize, state: { pageIndex, pageSize }
+    const { getTableProps, getTableBodyProps, headerGroups, prepareRow, 
+        page, canPreviousPage, canNextPage, previousPage, nextPage,
+        setPageSize
         } = useTable({columns, data, initialState: { pageIndex:0, pageSize: pageSizing, hiddenColumns: ['map', 'continent', 'iso2']}, manualPageiniation: true},
         useSortBy, usePagination);
 
@@ -32,15 +32,16 @@ function TableLux({columns, data, refParent}) {
         else
             setPageSize(25)
         
-    }, [stateContext.displayAllInTable])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [stateContext.displayAllInTable, data])
     const copRef = useRef();
     return (
-        <div>
+        <div className='bp3-rtl'>
             {
                 console.log('state 89++9 :', stateContext)
             }
             <ReactToPrint
-                trigger={() => <Button intent={Intent.PRIMARY}>Print</Button>}
+                trigger={() => <Button icon='print' intent={Intent.SUCCESS} className='bp3-rtl'>طباعة</Button>}
                 content={() => copRef.current}
                 pageStyle='print-page'
                 bodyClass='print-area'

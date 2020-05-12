@@ -6,12 +6,12 @@ import './Header.css';
 function Header() {
     return (
         <div>
-            <div className='header'>
-                <div className='title'>
+            <div className='header bp3-rtl'>
+                <div className='title bp3-rtl'>
                     {/* COVID-19 Manifesto */}
                     كوفيد-19 منيفاست
                 </div>
-                <div className='logo'>
+                <div className='logo bp3-rtl'>
                     <img src={Logo} alt='covid-19' className='logo-img'/>
                 </div>
                
