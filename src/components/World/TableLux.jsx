@@ -98,8 +98,8 @@ function TableLux({columns, data, refParent}) {
                 {
                     !stateContext.displayAllInTable && <Callout intent={Intent.NONE} className='st-wrapper'>
                         <div className='controls-btns'>                        
-                            <Button icon='arrow-left' disabled={!canPreviousPage} className='button-lux' onClick={() => previousPage()}/>
-                            <Button icon='arrow-right' disabled={!canNextPage} className='button-lux' onClick={() => nextPage()}/>
+                            <Button icon='arrow-left' disabled={!canNextPage} className='button-lux' onClick={() => nextPage()}/>
+                            <Button icon='arrow-right' disabled={!canPreviousPage} className='button-lux' onClick={() => previousPage()}/>
                         </div>
                         {/* <div className='result-res'>
                             Displaying {(pageSize * pageIndex+1)} of {data.length}

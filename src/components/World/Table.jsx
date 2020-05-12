@@ -83,42 +83,25 @@ const Table = () => {
         setTypeSort(e.currentTarget.value);
     }
     // const hiddenColumns = ['continent', '_id', 'iso2', "iso3", 'lat', 'long']
-    const columns = useMemo(() => [
+    const columns = useMemo(() => [        
         {
-            // Header: 'Country',
-            Header: 'معلومات البلد',
+            // Header: 'Other Stats',
+            Header: 'إحصاءات إستدلالية',
             columns : [
                 {
-                    Header: 'الراية',
-                    // Header: 'Flag',
-                    accessor: 'flag',
-                    Cell: ({ cell: {value}}) => <Flag value={value}/>
+                    Header: 'عدد الحالات المحققة',
+                    // Header: 'Active',
+                    accessor: 'active'
                 },
                 {
-                    Header: 'إسم البلد',
-                    // Header: 'Name',
-                    accessor: 'name'
+                    Header: 'الحالات الخطيرة',
+                    // Header: 'Critical',
+                    accessor: 'critical'
                 },
                 {
-                    Header: 'Map',
-                    accessor: 'map'
-                }
-            ]
-        },
-        {
-            // Header: 'Instant Stats',
-            Header:'الإحصاءات الأنية',
-            columns : [
-                {
-                    Header: 'عدد الحالات اللحظية',
-                    // Header: 'Cases',
-                    accessor: 'instantCases'
-                },
-                {
-                    Header: 'عدد الوفيات اللحظية',
-                    // Header: 'Deaths',
-                    accessor: 'instantDeaths',
-                    Cell: ({cell: {value}}) => <Danger value={value}/>
+                    Header: 'عدد التحاليل',
+                    // Header: 'Tests',
+                    accessor: 'tests'
                 }
             ]
         },
@@ -145,23 +128,40 @@ const Table = () => {
             ]
         },
         {
-            // Header: 'Other Stats',
-            Header: 'إحصاءات إستدلالية',
+            // Header: 'Instant Stats',
+            Header:'الإحصاءات الأنية',
             columns : [
                 {
-                    Header: 'عدد الحالات المحققة',
-                    // Header: 'Active',
-                    accessor: 'active'
+                    Header: 'عدد الحالات اللحظية',
+                    // Header: 'Cases',
+                    accessor: 'instantCases'
                 },
                 {
-                    Header: 'الحالات الخطيرة',
-                    // Header: 'Critical',
-                    accessor: 'critical'
+                    Header: 'عدد الوفيات اللحظية',
+                    // Header: 'Deaths',
+                    accessor: 'instantDeaths',
+                    Cell: ({cell: {value}}) => <Danger value={value}/>
+                }
+            ]
+        },
+        {
+            // Header: 'Country',
+            Header: 'معلومات البلد',
+            columns : [
+                {
+                    Header: 'إسم البلد',
+                    // Header: 'Name',
+                    accessor: 'name'
                 },
                 {
-                    Header: 'عدد التحاليل',
-                    // Header: 'Tests',
-                    accessor: 'tests'
+                    Header: 'الراية',
+                    // Header: 'Flag',
+                    accessor: 'flag',
+                    Cell: ({ cell: {value}}) => <Flag value={value}/>
+                },
+                {
+                    Header: 'Map',
+                    accessor: 'map'
                 }
             ]
         },
