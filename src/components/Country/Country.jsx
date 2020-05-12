@@ -417,10 +417,7 @@ function Country() {
                                 : status === 'loading' ? <Spinner size={Spinner.SIZE_LARGE}/> : <GenerateDataLine dataIn={data}/>
                             }
                         </div>
-                    </div>
-                    {
-                        console.log('state tyep : ', chartType)
-                    }
+                    </div>                 
                     <div className={Classes.DIALOG_FOOTER}>
                         <div className={Classes.DIALOG_FOOTER_ACTIONS}>
                             <Tooltip content='close chart dialog'>
@@ -437,18 +434,18 @@ function Country() {
             </Callout>
             <Margin10/>
             <Card elevation={Elevation.ONE} interactive={true}>
-                <Callout title='Total Cases' intent='none' style={{marginBottom: '10px'}}>                        
-                    <div className='result'>{status !== 'loading' && data.cases}</div>
+                <Callout title='Total Cases' intent='none' style={{marginBottom: '10px'}} className='--second'>                        
+                    <div className='الحالات الإجمالية'>{status !== 'loading' && data.cases}</div>
                 </Callout>
                 <H5>
                     Today Results
                 </H5>                
                 <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'}>
-                    <Callout title='Cases' intent='warning'>                        
+                    <Callout title='الحالات الآنية' intent='warning' className='--second'>      
                         <div className='result'>{status !== 'loading' && data.todayCases}</div>
                     </Callout>
                     <Divider/>
-                    <Callout title='Deaths' intent='danger'>
+                    <Callout title='الوفيات الآنية' intent='danger' className='--second'>
                         <div className='result'>{status !== 'loading' && data.todayDeaths}</div> 
                     </Callout>
                 </div>              
@@ -459,11 +456,11 @@ function Country() {
                     Recovered
                 </H5>
                 <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'}>
-                    <Callout title='Revovered' intent='success'>                        
+                    <Callout title='حالات الإستشفاء' intent='success' className='--second'>
                         <div className='result'>{status !== 'loading' && data.recovered}</div>                        
                     </Callout>
                     <Divider/>
-                    <Callout title='Tests' icon='diagnosis' intent='none'>
+                    <Callout title='الإختبارات' icon='diagnosis' intent='none' className='--second'>
                         <div className='result'>{status !== 'loading' && data.tests}</div> 
                     </Callout>
                 </div>                
@@ -473,12 +470,12 @@ function Country() {
                 <H5>
                     Deaths & Criticals
                 </H5>
-                <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'}>
-                    <Callout title='Total Deaths' intent='danger'>                        
+                <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'} className='--second'>
+                    <Callout title='الوفيات' intent='danger'>                        
                         <div className='result'>{status !== 'loading' && data.deaths}</div>                        
                     </Callout>
                     <Divider/>
-                    <Callout title='Critical case' icon='selection' intent='none'>
+                    <Callout title='الحالات الحرجة' icon='selection' intent='none' className='--second'>
                         <div className='result'>{status !== 'loading' && data.critical}</div> 
                     </Callout>
                 </div>                  
@@ -489,11 +486,11 @@ function Country() {
                     Other Stats
                 </H5>
                 <div className={status === 'loading' ? 'bp3-skeleton' : 'callout'}>
-                    <Callout title='cases/million' icon='percentage' intent='none'>                        
+                    <Callout title='الحالات/المليون' icon='percentage' intent='none' className='--second'>                        
                         <div className='result'>{status !== 'loading' && data.casesPerOneMillion}</div>                        
                     </Callout>
                     <Divider/>
-                    <Callout title='deaths/million' icon='percentage' intent='none'>
+                    <Callout title='الوفيات/المليون' icon='percentage' intent='none' className='--second'>
                         <div className='result'>{status !== 'loading' && data.deathsPerOneMillion}</div> 
                     </Callout>
                 </div>                
@@ -513,10 +510,10 @@ function Country() {
                     }}
                     // initialContent={allCountries ? <MenuItem disabled={true} text={`${allCountries.length} country loaded`}/> : undefined}
                 >
-                    <Button text={country ? country : 'select Country'} intent='primary' rightIcon='path-search'/>
+                    <Button text={country ? country : 'إختر البلد'} intent='primary' rightIcon='path-search' outlined={true}/>
                 </Select>
                 <Button icon="refresh" intent="success" onClick={handleRefreshClick}>
-                    Refresh
+                    تحديث البيانات
                 </Button>
             </Card>
         </div>

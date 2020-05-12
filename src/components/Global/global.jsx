@@ -17,19 +17,19 @@ const  Global = () => {
                     {
                         status === 'loading' ? <Spinner size={Spinner.SIZE_SMALL} intent='warning'/> :
                         <>
-                            <Callout title='Today Cases' intent='none'>
+                            <Callout title='الحالات الأنية' intent='none'>
                                 <div className='stats'>{data.todayCases}</div>    
                             </Callout>
                             <Divider/>
-                            <Callout title='Total Cases' intent='none'>
+                            <Callout title='الحالات الإجمالية' intent='none'>
                                 <div className='stats'>{data.cases}</div>    
                             </Callout>  
                             <Divider/>  
-                            <Callout title='Active' intent='none'>
+                            <Callout title='الحالات المحققة' intent='none'>
                                 <div className='stats'>{data.active}</div>    
                             </Callout>  
                             <Divider/>
-                            <Callout title='Critical' intent='none'>
+                            <Callout title='الحالات الحرجة' intent='none'>
                                 <div className='stats'>{data.critical}</div>    
                             </Callout>                                              
                         </>                    
@@ -40,11 +40,11 @@ const  Global = () => {
                     {
                         status === 'loading' ? <Spinner size={Spinner.SIZE_SMALL} intent='danger'/> :
                         <>
-                            <Callout title='Today Deaths' intent='none'>
+                            <Callout title='الوفيات الأنية' intent='none'>
                                 <div className='stats'>{data.todayDeaths}</div>    
                             </Callout>
                             <Divider/>
-                            <Callout title='Total Deaths' intent='none'>
+                            <Callout title='إجمالي الوفيات' intent='none'>
                                 <div className='stats'>{data.deaths}</div>    
                             </Callout>                                                
                         </>                    
@@ -55,7 +55,7 @@ const  Global = () => {
                     {
                         status === 'loading' ? <Spinner size={Spinner.SIZE_SMALL} intent='success'/> :
                         <>
-                            <Callout title='Recovered' intent='none'>
+                            <Callout title='حالات الإستشفاء' intent='none'>
                                 <div className='stats'>{data.recovered}</div>    
                             </Callout>
                                                                                                                                                                         

@@ -20,11 +20,16 @@ const fetchAllCountriesByType = async (key, type, yesterday) => {
     return ((await fetch(baseCountriesStats+ `?yesterday=${yesterday}&sort=${type}`)).json())
 }
 const options = [
-        { label: 'Today Cases', value :'todayCases'},
-        { label: 'Cases', value :'cases'},
-        { label: 'Deaths', value :'deaths'},
-        { label: 'Today Deaths', value :'todayDeaths'},
-        { label: 'Recovered', value :'recovered'}
+        { label: 'الحالات الأنية', value :'todayCases'},
+        { label: 'الحالات الإجمالية', value :'cases'},
+        { label: 'عدد الوفيات', value :'deaths'},
+        { label: 'عدد الوفيات الأنية', value :'todayDeaths'},
+        { label: 'عدد حالات الإستشفاء', value :'recovered'}
+        // { label: 'Today Cases', value :'todayCases'},
+        // { label: 'Cases', value :'cases'},
+        // { label: 'Deaths', value :'deaths'},
+        // { label: 'Today Deaths', value :'todayDeaths'},
+        // { label: 'Recovered', value :'recovered'}
     ]
 function Map() {
     const [showMap, setShowMap] = useState(true);
@@ -50,7 +55,7 @@ function Map() {
             <Collapse isOpen={showMap}>
                 <Callout className='options' intent='none'>
                     <HTMLSelect options={options} onChange={handleTypeChange} />
-                    <Switch labelElement={<strong>Yesterday</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
+                    <Switch labelElement={<strong>البارحة</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
                 </Callout>
                 <Margin10/>
                 <Card elevation={Elevation.ONE} interactive={true} className='map-canvas'>

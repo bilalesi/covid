@@ -5,7 +5,8 @@ import { useQuery } from 'react-query';
 import ReactToPrint from 'react-to-print';
 import { baseCountriesStats } from '../../api/endpoints';
 import TableFloaded from './TableLux';
-
+import { useGlobalDispatch, useGlobalState } from '../../contexts/GlobalContext';
+import { changeDisplayInTable } from '../../contexts/Actions'
 
 const fetchAllCountries = async (key, typeSort, yesterday) => {
     return (await fetch(baseCountriesStats + `?yesterday=${yesterday}&sort=${typeSort}`)).json()
@@ -62,7 +63,10 @@ const DangerLevel = ({value}) => {
     else if( value >= 2001)
         return <Tag intent={Intent.DANGER}>{value}</Tag>
 }
-function Table() {
+
+
+
+const Table = () => {
     const [showTable, setShowTable] = useState(true)
     const handleShowTable = () => {
         setShowTable(!showTable);
@@ -73,7 +77,8 @@ function Table() {
     }
     const [displayAll, setDiplayAll] = useState(false);
     const handleChangeDisplayAll = () => {
-        setDiplayAll(!displayAll)
+        // setDiplayAll(!displayAll)
+        dispatch(changeDisplayInTable());
     }
     const [typeSort, setTypeSort] = useState('all')
     const handleTypeChange = (e) => {
@@ -82,15 +87,18 @@ function Table() {
     const hiddenColumns = ['continent', '_id', 'iso2', "iso3", 'lat', 'long']
     const columns = useMemo(() => [
         {
-            Header: 'Country',
+            // Header: 'Country',
+            Header: 'معلومات البلد',
             columns : [
                 {
-                    Header: 'Flag',
+                    Header: 'الراية',
+                    // Header: 'Flag',
                     accessor: 'flag',
                     Cell: ({ cell: {value}}) => <Flag value={value}/>
                 },
                 {
-                    Header: 'Name',
+                    Header: 'إسم البلد',
+                    // Header: 'Name',
                     accessor: 'name'
                 },
                 {
@@ -100,50 +108,61 @@ function Table() {
             ]
         },
         {
-            Header: (yesterday ? 'Yesterday' : 'Today') + ' Stats',
+            // Header: 'Instant Stats',
+            Header:'الإحصاءات الأنية',
             columns : [
                 {
-                    Header: 'Cases',
+                    Header: 'عدد الحالات اللحظية',
+                    // Header: 'Cases',
                     accessor: 'instantCases'
                 },
                 {
-                    Header: 'Deaths',
+                    Header: 'عدد الوفيات اللحظية',
+                    // Header: 'Deaths',
                     accessor: 'instantDeaths',
                     Cell: ({cell: {value}}) => <Danger value={value}/>
                 }
             ]
         },
         {
-            Header: 'Total Stats',
+            // Header: 'Total Stats',
+            Header: 'الإحصاءات الكلية',
             columns : [
                 {
-                    Header: 'Cases',
+                    Header: 'الحالات الإجمالية',
+                    // Header: 'Cases',
                     accessor: 'cases'
                 },
                 {
-                    Header: 'Deaths',
+                    Header: 'الوفبات الإجمالية',
+                    // Header: 'Deaths',
                     accessor: 'deaths',
                     Cell: ({cell: {value}}) => <DangerLevel value={value}/>
                 },
                 {
-                    Header: 'Recovered',
+                    Header: 'حالات الإستعفاء الإجمالية',
+                    // Header: 'Recovered',
                     accessor: 'recovered'
                 }
             ]
         },
         {
-            Header: 'Other Stats',
+            // Header: 'Other Stats',
+            Header: 'إحصاءات إستدلالية',
             columns : [
                 {
-                    Header: 'Active',
+                    Header: 'عدد الحالات المحققة',
+                    // Header: 'Active',
                     accessor: 'active'
                 },
                 {
-                    Header: 'Critical',
+                    Header: 'الحالات الخطيرة',
+                    // Header: 'Critical',
                     accessor: 'critical'
                 },
                 {
-                    Header: 'Tests',
+                    Header: 'عدد التحاليل',
+                    // Header: 'Tests',
                     accessor: 'tests'
                 }
             ]
@@ -168,18 +187,20 @@ function Table() {
         () => status === 'success' ? transformFetchedData(data) : [],
         [status, data]
     )
+    const dispatch = useGlobalDispatch();
+    const stateContext = useGlobalState();
     return (
         <div>
             {console.log('table rows : ', rowsData)}
             <Tooltip content='click to collapse'>
-                <H2 onClick={handleShowTable}>World Table</H2>  
+                <H2 onClick={handleShowTable}>جدول الإحصاءات للعالم</H2>  
             </Tooltip>
             <Margin10/>            
             <Collapse isOpen={showTable}>
                 <Callout intent='none' className='options'>
                     <HTMLSelect options={options} onChange={handleTypeChange} />
-                    <Switch labelElement={<strong>Yesterday</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
-                    <Switch labelElement={<strong>Display All</strong>} inline={true} large={true} checked={displayAll} onChange={handleChangeDisplayAll}/>
+                    <Switch labelElement={<strong>إحصاءات البارحة</strong>} inline={true} large={true} checked={yesterday} onChange={handleChangeYesterday}/>
+                    <Switch labelElement={<strong>إظهار الكل</strong>} inline={true} large={true} checked={stateContext.displayAllInTable} onChange={handleChangeDisplayAll}/>                    
                     
                 </Callout>
                 <Margin10/>
@@ -188,7 +209,7 @@ function Table() {
                         status === 'loading' ? 
                             <Spinner size={Spinner.SIZE_LARGE}/>
                             :
-                            <TableFloaded columns={columns} data={rowsData} seeAll={displayAll}/>
+                            <TableFloaded columns={columns} data={rowsData}/>
                     }
                 </Card>
             </Collapse>

@@ -1,11 +1,12 @@
 import React, { useContext, createContext, useReducer } from 'react';
-
+import {CHANGE_COUNTRY_RIGHT_CORNER, DISPLAY_ALL_IN_TABLE} from './Actions'
 const GlobalStateDefault = {
     defaultContry: 'Algeria',
     countryRightCorner: {
         country: 'Algeria',
         iso2: 'dz'
-    }
+    },
+    displayAllInTable : false
 }
 
 const GlobalStateContext = createContext();
@@ -13,10 +14,15 @@ const GlobalDispatchContext = createContext();
 
 const GlobalReducer = (state, action) => {
     switch(action.type){
-        case 'CHANGE_COUNTRY_RIGHT_CORNER':
+        case CHANGE_COUNTRY_RIGHT_CORNER:
             return{
                 ...state,
                 countryRightCorner: action.payload
+            }
+        case DISPLAY_ALL_IN_TABLE:
+            return{
+                ...state,
+                displayAllInTable: action.payload !== undefined ? action.payload : !state.displayAllInTable
             }
         default:
             throw new Error('unhandled action type: ', action.type)
