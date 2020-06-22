@@ -13,7 +13,7 @@ const  Global = () => {
         <div className='global bp3-rtl'>
             <H2 className='title-1 bp3-rtl'>الإحصائيات في العالم </H2>
             <div className='content bp3-rtl'>
-                <Card className='card recovered bp3-rtl'>
+                <Card className='card  bp3-rtl'>
                     {
                         status === 'loading' ? <Spinner size={Spinner.SIZE_SMALL} intent='success'/> :
                         <>
@@ -25,7 +25,7 @@ const  Global = () => {
                     } 
                 </Card>
                 <Divider/>
-                <Card className='card deaths bp3-rtl'>
+                <Card className='card  bp3-rtl'>
                     {
                         status === 'loading' ? <Spinner size={Spinner.SIZE_SMALL} intent='danger'/> :
                         <>
@@ -40,7 +40,7 @@ const  Global = () => {
                     }                
                 </Card>
                 <Divider/>
-                <Card className='card cases bp3-rtl'>
+                <Card className='card  bp3-rtl'>
                     {
                         status === 'loading' ? <Spinner size={Spinner.SIZE_SMALL} intent='warning'/> :
                         <>

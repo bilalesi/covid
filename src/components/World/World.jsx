@@ -7,7 +7,7 @@ import Table from './Table';
 function World() {
     return (
         <div>
-            <Map/>
+            {/* <Map/> */}
             <Divider/>
             <Table/>
         </div>
